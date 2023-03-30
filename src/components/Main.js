@@ -1,14 +1,18 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { api } from '../utils/api';
 import Card from './Card';
 
 function Main ({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
-  const [userName, setUserName] = useState("")
-  const [userAbout, setUserAbout] = useState("");
-  const [userAvatar, setUserAvatar] = useState("");
+  const { name, about, avatar } = useContext(CurrentUserContext);
+  //const [userName, setUserName] = useState("")
+  //const [userAbout, setUserAbout] = useState("");
+  //const [userAvatar, setUserAvatar] = useState("");
+  const [cards, setCards] = useState([]);
 
-  useEffect (() => {
+  /*useEffect (() => {
     api.getUserInfo()
       .then((data) => {
         setUserName(data.name)
@@ -18,9 +22,7 @@ function Main ({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
       .catch((err) => {
         console.log(err)
       })
-  }, []);
-
-  const [cards, setCards] = useState([]);
+  }, []);*/  
 
   useEffect (() => {
     api.getInitialCards()
@@ -40,7 +42,7 @@ function Main ({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
             <div className="profile__avatar-container">
               <img
                 className="profile__image"
-                src={userAvatar}
+                src={avatar}
                 alt="фото профиля"
                 name="avatar"
               />
@@ -48,10 +50,10 @@ function Main ({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
             </div>    
             <div className="profile__info">
               <div className="profile__box">
-                <h1 className="profile__title">{userName}</h1>
+                <h1 className="profile__title">{name}</h1>
                 <button className="profile__edit-button" type="button" onClick={onEditProfile}></button>
               </div>
-              <p className="profile__subtitle">{userAbout}</p>
+              <p className="profile__subtitle">{about}</p>
             </div>
         </div>  
           <button className="profile__add-button" type="button" onClick={onAddPlace}></button>
