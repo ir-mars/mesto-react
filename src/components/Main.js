@@ -2,15 +2,15 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useContext } from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
-import { api } from '../utils/api';
+//import { api } from '../utils/api';
 import Card from './Card';
 
-function Main ({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
+function Main ({ cards, onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
   const { name, about, avatar } = useContext(CurrentUserContext);
   //const [userName, setUserName] = useState("")
   //const [userAbout, setUserAbout] = useState("");
   //const [userAvatar, setUserAvatar] = useState("");
-  const [cards, setCards] = useState([]);
+  //const [cards, setCards] = useState([]);
 
   /*useEffect (() => {
     api.getUserInfo()
@@ -24,15 +24,15 @@ function Main ({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
       })
   }, []);*/  
 
-  useEffect (() => {
+  /*useEffect (() => {
     api.getInitialCards()
       .then((card) => {
-        setCards(card) /*console.log(cards)*/
+        setCards(card) /*console.log(cards)
       })
       .catch((err) => {
         console.log(err)
       })
-  }, []);
+  }, []);*/
 
   return (
     <>

@@ -16,6 +16,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
+  const [cards, setCards] = useState([]);
 
   function handleEditAvatarClick () {
     setIsEditAvatarPopupOpen(true);
@@ -50,12 +51,23 @@ function App() {
         console.log(err)
       })
   }, []);
-  
+
+  useEffect (() => {
+    api.getInitialCards()
+      .then((cardsData) => {
+        setCards(cardsData) /*console.log(cardsData)*/
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, []);
+    
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Header />
-        <Main       
+        <Main
+          cards={cards}       
           onEditAvatar={handleEditAvatarClick}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
