@@ -5,7 +5,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 //import { api } from '../utils/api';
 import Card from './Card';
 
-function Main ({ cards, onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
+function Main ({ cards, onEditProfile, onEditAvatar, onAddPlace, onCardClick, onCardLike }) {
   const { name, about, avatar } = useContext(CurrentUserContext);
   //const [userName, setUserName] = useState("")
   //const [userAbout, setUserAbout] = useState("");
@@ -66,6 +66,7 @@ function Main ({ cards, onEditProfile, onEditAvatar, onAddPlace, onCardClick }) 
                 card={card} 
                 key={card._id}
                 onCardClick={onCardClick}
+                onCardLike={onCardLike}
               />
             ))
           }
