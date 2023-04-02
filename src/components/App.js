@@ -68,6 +68,17 @@ function App() {
       })
   }
 
+  function handleUpdateAvatar ({ avatar }) {
+    api.setAvatar({avatar})
+      .then(({avatar}) => {
+        setCurrentUser({avatar});
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   useEffect (() => {
     api.getUserInfo()
       .then(({ name, about, avatar, _id }) => {
@@ -120,7 +131,8 @@ function App() {
         
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
-          onClose={closeAllPopups}          
+          onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}          
         />
       </div>
     </CurrentUserContext.Provider>
