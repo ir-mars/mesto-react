@@ -57,7 +57,16 @@ function App() {
       })
   }
 
-  
+  function handleUpdateUser ({ name, about }) {
+    api.sendUserInfo({name, about})
+      .then(({ name, about, avatar, _id }) => {
+        setCurrentUser({ name, about, avatar, _id })
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 
   useEffect (() => {
     api.getUserInfo()
@@ -100,7 +109,8 @@ function App() {
 
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
-          onClose={closeAllPopups} 
+          onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser} 
         />
 
         <AddPlacePopup

@@ -10,7 +10,7 @@
 - Java Script для создания диалогового окна
 
 **ССылка на проект**
-https://ir-mars.github.io/mesto/
+https://ir-mars.github.io/mesto-react/
 
 
 # Getting Started with Create React App
