@@ -7,7 +7,6 @@ import { api } from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 import ImagePopup from './ImagePopup';
-import PopupWithForm from './PopupWithForm';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
@@ -71,7 +70,18 @@ function App() {
   function handleUpdateAvatar ({ avatar }) {
     api.setAvatar({avatar})
       .then(({avatar}) => {
-        setCurrentUser({avatar});
+        setCurrentUser({...currentUser, avatar});
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  function handleAddPlaceSubmit ({ name, link }) {
+    api.addCard({name, link})
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
         closeAllPopups();
       })
       .catch((err) => {
@@ -109,7 +119,7 @@ function App() {
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onCardClick={handleCardClick}
-          onCardLike={handleCardLike}
+          onCardLike={handleCardLike}          
         />    
         <Footer />
     
@@ -126,7 +136,8 @@ function App() {
 
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
-          onClose={closeAllPopups} 
+          onClose={closeAllPopups}
+          onAddPlace={handleAddPlaceSubmit} 
         />    
         
         <EditAvatarPopup
