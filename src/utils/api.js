@@ -65,7 +65,7 @@ class Api {
 
     //добавление или удаление лайка
     setLike(id, value) {
-        value = value ? 'PUT' : 'DELETE';
+        value = value ? 'DELETE' : 'PUT';
         return fetch(`${this._baseUrl}/cards/likes/` + id, { 
             method: `${value}`,
             headers: this._headers
