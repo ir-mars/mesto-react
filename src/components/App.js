@@ -52,13 +52,10 @@ function App() {
     setSelectedCard(null);
   };
 
-  function handleCardLike (card) {
-    const isLiked = card.likes.some((item) => item._id === currentUser._id);
-    api.setLike(card._id, isLiked)
+  function handleCardLike (card, value) {
+    api.setLike(card._id, value)
       .then((newCard) => {
-        setCards((state) => 
-          state.map((item) => (item._id === card._id ? newCard : item))
-        );
+        setCards((state) => state.map((item) => item._id === card._id ? newCard : item));
       })
       .catch((err) => {
         console.log(err);

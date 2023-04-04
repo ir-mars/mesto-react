@@ -63,7 +63,16 @@ class Api {
         .then(res => this._getResponse(res))
     }
 
-    //добавление лайка
+    //добавление или удаление лайка
+    setLike(id, value) {
+        value = value ? 'PUT' : 'DELETE';
+        return fetch(`${this._baseUrl}/cards/likes/` + id, { 
+            method: `${value}`,
+            headers: this._headers
+        })
+        .then(res => this._getResponse(res))             
+    }
+/*
     setLike(id) {
         return fetch(`${this._baseUrl}/cards/likes/` + id, {
             method: 'PUT',
@@ -78,7 +87,7 @@ class Api {
             headers: this._headers
         })
         .then(res => this._getResponse(res))
-    }
+    }*/
 
     setAvatar({avatar}) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
