@@ -7,7 +7,7 @@ function Main ({ cards, onEditProfile, onEditAvatar, onAddPlace, onCardClick, on
   const { name, about, avatar } = useContext(CurrentUserContext);
   
   return (
-    <>
+    
       <main className="content">
         <section className="profile" aria-label="Раздел Профайл">
         <div className="profile__container">
@@ -45,7 +45,7 @@ function Main ({ cards, onEditProfile, onEditAvatar, onAddPlace, onCardClick, on
           }
         </section>
       </main>
-    </> 
+     
   )
 }
 
